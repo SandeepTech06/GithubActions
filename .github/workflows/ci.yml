@@ -1,4 +1,4 @@
-name: Githubaction
+name: Node.js CI
 
 on:
   push:
@@ -10,11 +10,19 @@ jobs:
       runs-on: ubuntu-latest
 
       steps:
-        - name: Checkout code
+        - name: Checkout repository
           uses: actions/checkout@v4
+        
+        - name: Set up Node.js
+          uses: actions/setup-node@v4
+          with:
+            node-version: 20
 
-        - name: show files
-          run: ls 
+        - name: Install dependencies
+          run: npm install
+        
+        - name: Run tests
+          run: npm test
 
-        - name: print message
-          run: echo "Hello, GitHub Actions!"
+        - name: start server
+          run: node app.js
