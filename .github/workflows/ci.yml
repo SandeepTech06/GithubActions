@@ -24,3 +24,12 @@ jobs:
 
         - name: start server
           run: node app.js
+
+        - name: close server
+          run: kill $(lsof -t -i:3000)
+        
+        - name: Server closed successfully
+          run : echo "Server closed successfully"
+
+        - name: CI Passed 
+          run: echo "Running CI Successfully..."
